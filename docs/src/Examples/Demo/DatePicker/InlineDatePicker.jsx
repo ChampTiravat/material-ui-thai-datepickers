@@ -1,5 +1,11 @@
 import React, { Fragment, PureComponent } from 'react';
 import { InlineDatePicker } from 'material-ui-pickers/DatePicker';
+import MomentUtils from 'material-ui-pickers/utils/moment-utils';
+import MuiPickersUtilsProvider from 'material-ui-pickers/utils/MuiPickersUtilsProvider';
+import moment from 'moment';
+import 'moment/locale/th';
+
+moment.locale('th');
 
 export default class InlineDatePickerDemo extends PureComponent {
   state = {
@@ -21,6 +27,20 @@ export default class InlineDatePickerDemo extends PureComponent {
             value={selectedDate}
             onChange={this.handleDateChange}
           />
+        </div>
+
+        <div className="picker">
+          <MuiPickersUtilsProvider utils={MomentUtils} locale="th" moment={moment}>
+            <InlineDatePicker
+              label="with B.E. yearOffset"
+              yearOffset={543}
+              pickerHeaderFormat="ddd D MMM"
+              format="dddd D MMMM YYYY"
+              value={selectedDate}
+              onChange={this.handleDateChange}
+              animateYearScrolling
+            />
+          </MuiPickersUtilsProvider>
         </div>
 
         <div className="picker">
