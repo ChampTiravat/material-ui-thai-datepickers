@@ -1,14 +1,14 @@
 {
   "name": "material-ui-thai-datepickers",
-  "version": "1.0.0",
-  "private": true,
+  "version": "1.0.1",
   "description": "React components, that implements material design pickers for material-ui v1",
-  "main": "build/dist/material-ui-pickers.cjs.js",
-  "module": "build/dist/material-ui-pickers.esm.js",
+  "main": "build/dist/material-ui-thai-datepickers.cjs.js",
+  "module": "build/dist/material-ui-thai-datepickers.esm.js",
   "types": "src/index.d.ts",
   "keywords": [
     "material-ui",
     "pickers",
+    "material-ui-thai-datepickers",
     "material-ui-pickers",
     "datepicker",
     "timepicker",
@@ -53,7 +53,7 @@
   },
   "size-limit": [
     {
-      "path": "build/dist/material-ui-pickers.cjs.js",
+      "path": "build/dist/material-ui-thai-datepickers.cjs.js",
       "limit": "30 KB"
     }
   ],
