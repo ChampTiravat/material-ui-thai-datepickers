@@ -29,6 +29,8 @@ export const DateTimePickerInline = (props) => {
     animateYearScrolling,
     forwardedRef,
     allowKeyboardControl,
+    yearOffset,
+    pickerHeaderFormat,
     ...other
   } = props;
 
@@ -53,6 +55,7 @@ export const DateTimePickerInline = (props) => {
             value={value}
             isAccepted={isAccepted}
             format={pick12hOr24hFormat(utils.dateTime12hFormat, utils.dateTime24hFormat)}
+            yearOffset={yearOffset}
             {...other}
           >
             <DateTimePicker
@@ -74,6 +77,8 @@ export const DateTimePickerInline = (props) => {
               shouldDisableDate={shouldDisableDate}
               showTabs={showTabs}
               timeIcon={timeIcon}
+              pickerHeaderFormat={pickerHeaderFormat}
+              yearOffset={yearOffset}
             />
           </InlineWrapper>
         )
@@ -105,6 +110,8 @@ DateTimePickerInline.propTypes = {
   openTo: PropTypes.oneOf(['year', 'date', 'hour', 'minutes']),
   allowKeyboardControl: PropTypes.bool,
   forwardedRef: PropTypes.func,
+  yearOffset: PropTypes.number,
+  pickerHeaderFormat: PropTypes.string,
 };
 
 DateTimePickerInline.defaultProps = {
@@ -129,6 +136,8 @@ DateTimePickerInline.defaultProps = {
   animateYearScrolling: false,
   forwardedRef: undefined,
   allowKeyboardControl: true,
+  yearOffset: 0,
+  pickerHeaderFormat: undefined,
 };
 
 export default React.forwardRef(

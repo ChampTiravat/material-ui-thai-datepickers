@@ -12,7 +12,7 @@ import withUtils from './WithUtils';
 
 const getDisplayDate = (props) => {
   const {
-    utils, value, format, invalidLabel, emptyLabel, labelFunc,
+    utils, value, format, invalidLabel, emptyLabel, labelFunc, yearOffset,
   } = props;
 
   const isEmpty = value === null;
@@ -26,9 +26,19 @@ const getDisplayDate = (props) => {
     return emptyLabel;
   }
 
-  return utils.isValid(date)
-    ? utils.format(date, format)
-    : invalidLabel;
+  if (!utils.isValid(date)) {
+    return invalidLabel;
+  }
+
+  if (yearOffset !== 0 && /Y{2,4}/.test(format)) {
+    const modYear = utils.getYear(date) + parseInt(yearOffset, 10);
+    let modFormat = format.replace(/YYYY/g, modYear);
+    modFormat = modFormat.replace(/YYY/g, modYear);
+    modFormat = modFormat.replace(/YY/g, modYear.toString().substring(2, 4));
+    return utils.format(date, modFormat);
+  }
+
+  return utils.format(date, format);
 };
 
 const getError = (value, props) => {
@@ -129,6 +139,7 @@ export class DateTextField extends PureComponent {
     onError: PropTypes.func,
     /** Callback firing on change input in keyboard mode [(e: Event) => void] */
     onInputChange: PropTypes.func,
+    yearOffset: PropTypes.number,
   }
 
   static defaultProps = {
@@ -158,6 +169,7 @@ export class DateTextField extends PureComponent {
     TextFieldComponent: TextField,
     InputAdornmentProps: {},
     adornmentPosition: 'end',
+    yearOffset: 0,
   }
 
   state = DateTextField.updateState(this.props)

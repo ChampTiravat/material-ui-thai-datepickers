@@ -26,6 +26,8 @@ export const DatePickerModal = (props) => {
     rightArrowIcon,
     shouldDisableDate,
     value,
+    yearOffset,
+    pickerHeaderFormat,
     ...other
   } = props;
 
@@ -58,6 +60,7 @@ export const DatePickerModal = (props) => {
             ref={forwardedRef}
             value={value}
             isAccepted={isAccepted}
+            yearOffset={yearOffset}
             {...other}
           >
             <DatePicker
@@ -74,6 +77,8 @@ export const DatePickerModal = (props) => {
               renderDay={renderDay}
               rightArrowIcon={rightArrowIcon}
               shouldDisableDate={shouldDisableDate}
+              pickerHeaderFormat={pickerHeaderFormat}
+              yearOffset={yearOffset}
             />
           </ModalWrapper>
         )
@@ -122,6 +127,8 @@ DatePickerModal.propTypes = {
   /** Enables keyboard listener for moving between days in calendar */
   allowKeyboardControl: PropTypes.bool,
   forwardedRef: PropTypes.func,
+  pickerHeaderFormat: PropTypes.string,
+  yearOffset: PropTypes.number,
 };
 
 DatePickerModal.defaultProps = {
@@ -142,6 +149,8 @@ DatePickerModal.defaultProps = {
   labelFunc: undefined,
   shouldDisableDate: undefined,
   forwardedRef: undefined,
+  pickerHeaderFormat: undefined,
+  yearOffset: 0,
 };
 
 export default React.forwardRef((props, ref) => (

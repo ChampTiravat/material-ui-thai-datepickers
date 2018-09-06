@@ -28,6 +28,8 @@ export const DatePickerInline = (props) => {
     value,
     autoOk,
     onlyCalendar,
+    yearOffset,
+    pickerHeaderFormat,
     ...other
   } = props;
 
@@ -54,6 +56,7 @@ export const DatePickerInline = (props) => {
             ref={forwardedRef}
             value={value}
             isAccepted={isAccepted}
+            yearOffset={yearOffset}
             {...other}
           >
             <ComponentToShow
@@ -70,6 +73,8 @@ export const DatePickerInline = (props) => {
               renderDay={renderDay}
               rightArrowIcon={rightArrowIcon}
               shouldDisableDate={shouldDisableDate}
+              pickerHeaderFormat={pickerHeaderFormat}
+              yearOffset={yearOffset}
             />
           </InlineWrapper>
         )
@@ -98,6 +103,8 @@ DatePickerInline.propTypes = {
   allowKeyboardControl: PropTypes.bool,
   forwardedRef: PropTypes.func,
   autoOk: PropTypes.bool,
+  yearOffset: PropTypes.number,
+  pickerHeaderFormat: PropTypes.string,
 };
 
 DatePickerInline.defaultProps = {
@@ -119,6 +126,8 @@ DatePickerInline.defaultProps = {
   forwardedRef: undefined,
   autoOk: undefined,
   onlyCalendar: false,
+  yearOffset: 0,
+  pickerHeaderFormat: undefined,
 };
 
 export default React.forwardRef((props, ref) => (

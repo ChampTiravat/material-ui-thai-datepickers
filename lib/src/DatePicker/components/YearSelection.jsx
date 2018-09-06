@@ -17,10 +17,12 @@ export class YearSelection extends PureComponent {
     disableFuture: PropTypes.bool.isRequired,
     animateYearScrolling: PropTypes.bool,
     utils: PropTypes.object.isRequired,
+    yearOffset: PropTypes.number,
   }
 
   static defaultProps = {
     animateYearScrolling: false,
+    yearOffset: 0,
   }
 
   selectedYearRef = undefined;
@@ -53,7 +55,7 @@ export class YearSelection extends PureComponent {
 
   render() {
     const {
-      minDate, maxDate, date, classes, disablePast, disableFuture, utils,
+      minDate, maxDate, date, classes, disablePast, disableFuture, utils, yearOffset,
     } = this.props;
     const currentYear = utils.getYear(date);
 
@@ -77,7 +79,9 @@ export class YearSelection extends PureComponent {
                     || (disableFuture && utils.isAfterYear(year, utils.date()))
                   )}
                 >
-                  {utils.getYearText(year)}
+                  {yearOffset !== 0
+                    ? (utils.getYear(year) + parseInt(yearOffset, 10)).toString()
+                    : utils.getYearText(year)}
                 </Year>
               );
             })

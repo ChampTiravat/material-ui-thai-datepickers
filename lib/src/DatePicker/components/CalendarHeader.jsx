@@ -18,6 +18,7 @@ export const CalendarHeader = ({
   disableNextMonth,
   utils,
   slideDirection,
+  yearOffset,
 }) => {
   const rtl = theme.direction === 'rtl';
 
@@ -44,7 +45,9 @@ export const CalendarHeader = ({
             align="center"
             variant="body1"
           >
-            {utils.getCalendarHeaderText(currentMonth)}
+            {yearOffset !== 0
+              ? utils.format(currentMonth, `MMMM ${(utils.getYear(currentMonth) + parseInt(yearOffset, 10)).toString()}`)
+              : utils.getCalendarHeaderText(currentMonth)}
           </Typography>
         </SlideTransition>
 
@@ -85,6 +88,7 @@ CalendarHeader.propTypes = {
   disableNextMonth: PropTypes.bool,
   utils: PropTypes.object.isRequired,
   slideDirection: PropTypes.oneOf(['right', 'left']).isRequired,
+  yearOffset: PropTypes.number,
 };
 
 CalendarHeader.defaultProps = {
@@ -92,6 +96,7 @@ CalendarHeader.defaultProps = {
   rightArrowIcon: 'keyboard_arrow_right',
   disablePrevMonth: false,
   disableNextMonth: false,
+  yearOffset: 0,
 };
 
 const styles = theme => ({

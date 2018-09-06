@@ -31,6 +31,8 @@ export const DateTimePickerModal = (props) => {
     animateYearScrolling,
     forwardedRef,
     allowKeyboardControl,
+    yearOffset,
+    pickerHeaderFormat,
     ...other
   } = props;
 
@@ -64,6 +66,7 @@ export const DateTimePickerModal = (props) => {
             value={value}
             isAccepted={isAccepted}
             format={pick12hOr24hFormat(utils.dateTime12hFormat, utils.dateTime24hFormat)}
+            yearOffset={yearOffset}
             {...other}
           >
             <DateTimePicker
@@ -85,6 +88,8 @@ export const DateTimePickerModal = (props) => {
               shouldDisableDate={shouldDisableDate}
               showTabs={showTabs}
               timeIcon={timeIcon}
+              pickerHeaderFormat={pickerHeaderFormat}
+              yearOffset={yearOffset}
             />
           </ModalWrapper>
         )
@@ -141,6 +146,9 @@ DateTimePickerModal.propTypes = {
   /** Enables keyboard listener for moving between days in calendar */
   allowKeyboardControl: PropTypes.bool,
   forwardedRef: PropTypes.func,
+  yearOffset: PropTypes.number,
+  pickerHeaderFormat: PropTypes.string,
+
 };
 
 DateTimePickerModal.defaultProps = {
@@ -165,6 +173,8 @@ DateTimePickerModal.defaultProps = {
   animateYearScrolling: false,
   forwardedRef: undefined,
   allowKeyboardControl: true,
+  yearOffset: 0,
+  pickerHeaderFormat: undefined,
 };
 
 const styles = {

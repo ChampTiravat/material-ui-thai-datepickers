@@ -30,6 +30,7 @@ export class Calendar extends Component {
     shouldDisableDate: PropTypes.func,
     utils: PropTypes.object.isRequired,
     allowKeyboardControl: PropTypes.bool,
+    yearOffset: PropTypes.number,
   };
 
   static defaultProps = {
@@ -42,6 +43,7 @@ export class Calendar extends Component {
     renderDay: undefined,
     allowKeyboardControl: false,
     shouldDisableDate: () => false,
+    yearOffset: 0,
   };
 
   state = {
@@ -225,7 +227,7 @@ export class Calendar extends Component {
 
   render() {
     const { currentMonth, slideDirection } = this.state;
-    const { classes, utils, allowKeyboardControl } = this.props;
+    const { classes, utils, allowKeyboardControl, yearOffset } = this.props;
 
     return (
       <Fragment>
@@ -243,6 +245,7 @@ export class Calendar extends Component {
           disablePrevMonth={this.shouldDisablePrevMonth()}
           disableNextMonth={this.shouldDisableNextMonth()}
           utils={utils}
+          yearOffset={yearOffset}
         />
 
         <SlideTransition

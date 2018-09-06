@@ -38,6 +38,8 @@ export class DateTimePicker extends Component {
     utils: PropTypes.object.isRequired,
     ViewContainerComponent:
       PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+    pickerHeaderFormat: PropTypes.string,
+    yearOffset: PropTypes.number,
   }
 
   static defaultProps = {
@@ -55,6 +57,8 @@ export class DateTimePicker extends Component {
     showTabs: true,
     timeIcon: undefined,
     ViewContainerComponent: 'div',
+    pickerHeaderFormat: undefined,
+    yearOffset: 0,
   }
 
   state = {
@@ -124,6 +128,8 @@ export class DateTimePicker extends Component {
       classes,
       allowKeyboardControl,
       ViewContainerComponent,
+      pickerHeaderFormat,
+      yearOffset,
     } = this.props;
 
     const ViewContainerComponentProps = typeof ViewContainerComponent === 'string'
@@ -139,6 +145,9 @@ export class DateTimePicker extends Component {
           onOpenViewChange={this.handleViewChange}
           utils={utils}
           ampm={ampm}
+          pickerHeaderFormat={pickerHeaderFormat}
+          yearOffset={yearOffset}
+
         />
 
         {
@@ -164,6 +173,7 @@ export class DateTimePicker extends Component {
               disableFuture={disableFuture}
               utils={utils}
               animateYearScrolling={animateYearScrolling}
+              yearOffset={yearOffset}
             />
           </View>
 
@@ -180,6 +190,7 @@ export class DateTimePicker extends Component {
               rightArrowIcon={rightArrowIcon}
               renderDay={renderDay}
               shouldDisableDate={shouldDisableDate}
+              yearOffset={yearOffset}
             />
           </View>
 

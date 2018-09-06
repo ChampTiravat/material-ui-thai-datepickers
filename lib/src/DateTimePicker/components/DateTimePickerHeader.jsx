@@ -9,7 +9,7 @@ import * as viewType from '../../constants/date-picker-view';
 export const DateTimePickerHeader = (props) => {
   const {
     date, classes, openView, meridiemMode, onOpenViewChange, setMeridiemMode,
-    theme, utils, ampm,
+    theme, utils, ampm, pickerHeaderFormat, yearOffset,
   } = props;
 
   const changeOpenView = view => () => onOpenViewChange(view);
@@ -18,6 +18,7 @@ export const DateTimePickerHeader = (props) => {
   const hourMinuteClassName = rtl
     ? classes.hourMinuteLabelReverse
     : classes.hourMinuteLabel;
+  const modYear = utils.getYear(date) + parseInt(yearOffset, 10);
 
   return (
     <PickerToolbar className={classes.toolbar}>
@@ -26,14 +27,16 @@ export const DateTimePickerHeader = (props) => {
           variant="subheading"
           onClick={changeOpenView(viewType.YEAR)}
           selected={openView === viewType.YEAR}
-          label={utils.getYearText(date)}
+          label={yearOffset !== 0 ? modYear.toString() : utils.getYearText(date)}
         />
 
         <ToolbarButton
           variant="display1"
           onClick={changeOpenView(viewType.DATE)}
           selected={openView === viewType.DATE}
-          label={utils.getDateTimePickerHeaderText(date)}
+          label={pickerHeaderFormat
+            ? utils.format(date, pickerHeaderFormat)
+            : utils.getDateTimePickerHeaderText(date)}
         />
       </div>
 
@@ -96,10 +99,14 @@ DateTimePickerHeader.propTypes = {
   setMeridiemMode: PropTypes.func.isRequired,
   utils: PropTypes.object.isRequired,
   ampm: PropTypes.bool,
+  pickerHeaderFormat: PropTypes.string,
+  yearOffset: PropTypes.number,
 };
 
 DateTimePickerHeader.defaultProps = {
   ampm: true,
+  pickerHeaderFormat: undefined,
+  yearOffset: 0,
 };
 
 const styles = () => ({

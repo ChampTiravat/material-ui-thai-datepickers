@@ -25,6 +25,8 @@ export class DatePicker extends PureComponent {
     utils: PropTypes.object.isRequired,
     shouldDisableDate: PropTypes.func,
     allowKeyboardControl: PropTypes.bool,
+    pickerHeaderFormat: PropTypes.string,
+    yearOffset: PropTypes.number,
   }
 
   static defaultProps = {
@@ -40,6 +42,8 @@ export class DatePicker extends PureComponent {
     rightArrowIcon: undefined,
     renderDay: undefined,
     shouldDisableDate: undefined,
+    pickerHeaderFormat: undefined,
+    yearOffset: 0,
   }
 
   state = {
@@ -83,8 +87,11 @@ export class DatePicker extends PureComponent {
       utils,
       shouldDisableDate,
       allowKeyboardControl,
+      pickerHeaderFormat,
+      yearOffset,
     } = this.props;
     const { showYearSelection } = this.state;
+    const modYear = utils.getYear(this.date) + parseInt(yearOffset, 10);
 
     return (
       <Fragment>
@@ -93,14 +100,16 @@ export class DatePicker extends PureComponent {
             variant="subheading"
             onClick={this.openYearSelection}
             selected={showYearSelection}
-            label={utils.getYearText(this.date)}
+            label={yearOffset !== 0 ? modYear.toString() : utils.getYearText(this.date)}
           />
 
           <ToolbarButton
             variant="display1"
             onClick={this.openCalendar}
             selected={!showYearSelection}
-            label={utils.getDatePickerHeaderText(this.date)}
+            label={pickerHeaderFormat
+              ? utils.format(this.date, pickerHeaderFormat)
+              : utils.getDatePickerHeaderText(this.date)}
           />
         </PickerToolbar>
 
@@ -118,6 +127,7 @@ export class DatePicker extends PureComponent {
                 disableFuture={disableFuture}
                 animateYearScrolling={animateYearScrolling}
                 utils={utils}
+                yearOffset={yearOffset}
               />
             )
             : (
@@ -134,6 +144,7 @@ export class DatePicker extends PureComponent {
                 utils={utils}
                 shouldDisableDate={shouldDisableDate}
                 allowKeyboardControl={allowKeyboardControl}
+                yearOffset={yearOffset}
               />
             )
         }
