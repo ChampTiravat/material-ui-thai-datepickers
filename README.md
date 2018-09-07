@@ -1,11 +1,12 @@
 # Material-UI Thai datepickers
 This package is forked from [material-ui-pickers](https://www.npmjs.com/package/material-ui-pickers)
+
 [![npm package](https://img.shields.io/npm/v/material-ui-thai-datepickers.svg)](https://www.npmjs.org/package/material-ui-thai-datepickers)
 [![npm download](https://img.shields.io/npm/dm/material-ui-thai-datepickers.svg)](https://www.npmjs.org/package/material-ui-thai-datepickers)
 [![npm package](https://img.shields.io/npm/types/material-ui-thai-datepickers.svg)](https://www.npmjs.org/package/material-ui-thai-datepickers)
 > Components, that implements material design date and time pickers for material-ui v1
 
-##### Addtional configurations
+## Addtional configurations
 * **yearOffset** for adding display year from relative CE
 * **pickerHeaderFormat** for customizing format to pickerHeader
 
