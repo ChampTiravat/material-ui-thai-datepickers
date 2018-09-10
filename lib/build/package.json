@@ -1,6 +1,6 @@
 {
   "name": "material-ui-thai-datepickers",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "React components, that implements material design pickers for material-ui v1",
   "main": "build/dist/material-ui-thai-datepickers.cjs.js",
   "module": "build/dist/material-ui-thai-datepickers.esm.js",
