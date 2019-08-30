@@ -28,6 +28,9 @@ export const datePickerDefaultProps = {
   minDateMessage: 'Date should not be before minimal date',
   maxDateMessage: 'Date should not be after maximal date',
   allowKeyboardControl: true,
+  pickerHeaderFormat: 'ddd D MMM',
+  yearOffset: 0,
+
 } as BaseDatePickerProps;
 
 export const dateTimePickerDefaultProps = {

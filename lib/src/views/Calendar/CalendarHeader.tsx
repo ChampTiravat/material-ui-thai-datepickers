@@ -20,6 +20,7 @@ export interface CalendarHeaderProps {
   disableNextMonth?: boolean;
   slideDirection: SlideDirection;
   onMonthChange: (date: MaterialUiPickersDate, direction: SlideDirection) => void | Promise<void>;
+  yearOffset?: number;
 }
 
 export const useStyles = makeStyles(
@@ -66,6 +67,7 @@ export const CalendarHeader: React.SFC<CalendarHeaderProps> = ({
   disablePrevMonth,
   disableNextMonth,
   slideDirection,
+  yearOffset,
 }) => {
   const utils = useUtils();
   const classes = useStyles();
@@ -93,8 +95,7 @@ export const CalendarHeader: React.SFC<CalendarHeaderProps> = ({
           className={classes.transitionContainer}
         >
           <Typography align="center" variant="body1">
-            {/* {utils.getCalendarHeaderText(currentMonth)} //TODO: read from props */}
-            {utils.format(currentMonth, `MMMM ${utils.getYear(currentMonth) + 543}`)}
+            {utils.format(currentMonth, `MMMM ${utils.getYear(currentMonth) + (yearOffset || 0)}`)}
           </Typography>
         </SlideTransition>
 

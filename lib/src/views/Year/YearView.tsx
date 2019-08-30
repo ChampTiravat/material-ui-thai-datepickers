@@ -15,6 +15,7 @@ export interface YearSelectionProps {
   disableFuture?: boolean | null | undefined;
   animateYearScrolling?: boolean | null | undefined;
   onYearChange?: (date: MaterialUiPickersDate) => void;
+  yearOffset?: number;
 }
 
 export const useStyles = makeStyles(
@@ -36,6 +37,7 @@ export const YearSelection: React.FC<YearSelectionProps> = ({
   disablePast,
   disableFuture,
   animateYearScrolling,
+  yearOffset,
 }) => {
   const utils = useUtils();
   const classes = useStyles();
@@ -72,8 +74,7 @@ export const YearSelection: React.FC<YearSelectionProps> = ({
 
         return (
           <Year
-            // key={utils.getYearText(year)} //TODO: read from prop
-            key={`${utils.getYear(date) + 543}`}
+            key={`${utils.getYear(year) + (yearOffset || 0)}`}
             selected={selected}
             value={yearNumber}
             onSelect={onYearSelect}
@@ -83,8 +84,7 @@ export const YearSelection: React.FC<YearSelectionProps> = ({
                 (disableFuture && utils.isAfterYear(year, utils.date()))
             )}
           >
-            {/* {utils.getYearText(year)} //TODO: read from prop */} 
-            {`${utils.getYear(date) + 543}`}
+            {`${utils.getYear(year) + (yearOffset || 0)}`}
           </Year>
         );
       })}

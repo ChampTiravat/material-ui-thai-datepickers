@@ -22,7 +22,7 @@ function parseInputString(value: string, utils: IUtils<any>, format: string) {
 }
 
 export function useKeyboardPickerState(props: BaseKeyboardPickerProps, options: StateHookOptions) {
-  const { format = options.getDefaultFormat(), inputValue, onChange, value } = props;
+  const { format = options.getDefaultFormat(), inputValue, onChange, value, yearOffset = 0 } = props;
   const utils = useUtils();
 
   const displayDate = getDisplayDate(value, format, utils, value === null, props);
@@ -39,7 +39,7 @@ export function useKeyboardPickerState(props: BaseKeyboardPickerProps, options: 
     (date: MaterialUiPickersDate) => {
       let modFormat = format; //TODO: read from props
       if (/Y{2,4}/i.test(format)) {
-        const modYear = `${utils.getYear(date) + 543}`;
+        const modYear = `${utils.getYear(date) + yearOffset}`;
         modFormat = format.replace(/YYYY/ig, modYear);
         modFormat = modFormat.replace(/YYY/ig, modYear);
         modFormat = modFormat.replace(/YY/ig, modYear.toString().substring(2, 4));
