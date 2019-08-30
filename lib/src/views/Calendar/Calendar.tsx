@@ -47,6 +47,8 @@ export interface OutterCalendarProps {
   onMonthChange?: (date: MaterialUiPickersDate) => void | Promise<void>;
   /** Custom loading indicator  */
   loadingIndicator?: JSX.Element;
+  pickerHeaderFormat?: string;
+  yearOffset?: number;
 }
 
 export interface CalendarProps
@@ -303,6 +305,7 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
       rightArrowButtonProps,
       rightArrowIcon,
       loadingIndicator,
+      yearOffset,
     } = this.props;
     const loadingElement = loadingIndicator ? loadingIndicator : <CircularProgress />;
 
@@ -322,6 +325,7 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
           rightArrowButtonProps={rightArrowButtonProps}
           disablePrevMonth={this.shouldDisablePrevMonth()}
           disableNextMonth={this.shouldDisableNextMonth()}
+          yearOffset={yearOffset || 0}
         />
 
         <SlideTransition

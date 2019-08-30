@@ -47,15 +47,20 @@ npm i dayjs @date-io/dayjs
 Then teach pickers which library to use with `MuiPickerUtilsProvider`. This component takes a utils property, and makes it available down the React tree thanks to React context. It should preferably be used at the root of your component tree.
 
 ```jsx
-import MomentUtils from '@date-io/moment';
-import DateFnsUtils from '@date-io/date-fns';
-import LuxonUtils from '@date-io/luxon';
-import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+import MomentUtils from "@date-io/moment";
+import { MuiPickersUtilsProvider, DatePicker } from "material-ui-thai-datepickers";
+
+import 'moment/locale/th';
 
 function App() {
   return (
-    <MuiPickersUtilsProvider utils={DateFnsUtils}>
-      <Root />
+    <MuiPickersUtilsProvider utils={MomentUtils} locale={'th'}>
+      <DatePicker
+        label="with B.E. yearOffset"
+        format="dd/MM/YYYY"
+        pickerHeaderFormat="ddd D MMM"
+        yearOffset={543}
+      />
     </MuiPickersUtilsProvider>
   );
 }

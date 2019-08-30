@@ -34,6 +34,8 @@ export const DateTimePickerToolbar: React.FC<ToolbarComponentProps> = ({
   dateRangeIcon,
   timeIcon,
   onChange,
+  pickerHeaderFormat,
+  yearOffset,
 }) => {
   const utils = useUtils();
   const classes = useStyles();
@@ -52,8 +54,7 @@ export const DateTimePickerToolbar: React.FC<ToolbarComponentProps> = ({
                 variant="subtitle1"
                 onClick={() => setOpenView('year')}
                 selected={openView === 'year'}
-                // label={utils.getYearText(date)} //TODO: read from prop
-                label={`${utils.getYear(date) + 543}`}
+                label={`${utils.getYear(date) + (yearOffset || 0)}`}
 
               />
             </div>
@@ -62,8 +63,7 @@ export const DateTimePickerToolbar: React.FC<ToolbarComponentProps> = ({
                 variant="h4"
                 onClick={() => setOpenView('date')}
                 selected={openView === 'date'}
-                // label={utils.getDatePickerHeaderText(date)} //TODO: read from prop
-                label={utils.format(date, 'ddd D MMM')}
+                label={utils.format(date, (pickerHeaderFormat || 'ddd D MMM'))}
 
               />
             </div>

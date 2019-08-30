@@ -56,4 +56,14 @@ export interface BasePickerProps {
   /** Component that will replace default toolbar renderer */
   ToolbarComponent?: React.ComponentType<ToolbarComponentProps>;
   variant?: WrapperVariant;
+  /**
+   * Format string for picker header
+   * @default 'ddd D MMM'
+   */
+  pickerHeaderFormat?: string;
+  /**
+   * convert display year to user's era by adding year offset
+   * @default 0
+   */
+  yearOffset?: number;
 }

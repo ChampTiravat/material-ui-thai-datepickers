@@ -78,6 +78,8 @@ export function makePickerWithState<T extends any>({
       value,
       variant,
       views,
+      pickerHeaderFormat,
+      yearOffset,
       ...other
     } = props;
 
@@ -123,6 +125,8 @@ export function makePickerWithState<T extends any>({
           timeIcon={timeIcon}
           ToolbarComponent={ToolbarComponent}
           views={views}
+          pickerHeaderFormat={pickerHeaderFormat}
+          yearOffset={yearOffset}
         />
       </Wrapper>
     );

@@ -54,6 +54,8 @@ export interface PickerViewProps extends BaseDatePickerProps, BaseTimePickerProp
 interface PickerProps extends PickerViewProps {
   date: MaterialUiPickersDate;
   orientation?: BasePickerProps['orientation'];
+  pickerHeaderFormat?: BasePickerProps['pickerHeaderFormat'];
+  yearOffset?: BasePickerProps['yearOffset'];
   onChange: (date: MaterialUiPickersDate, isFinish?: boolean) => void;
 }
 
@@ -92,6 +94,8 @@ export const Picker: React.FunctionComponent<PickerProps> = ({
   maxDate: unparsedMaxDate,
   ToolbarComponent,
   orientation,
+  pickerHeaderFormat,
+  yearOffset,
   ...rest
 }) => {
   const utils = useUtils();
@@ -117,6 +121,8 @@ export const Picker: React.FunctionComponent<PickerProps> = ({
           onChange={onChange}
           setOpenView={setOpenView}
           openView={openView}
+          pickerHeaderFormat={pickerHeaderFormat || 'ddd D MMM'}
+          yearOffset={yearOffset || 0}
         />
       )}
 
@@ -128,6 +134,7 @@ export const Picker: React.FunctionComponent<PickerProps> = ({
             onChange={handleChangeAndOpenNext}
             minDate={minDate}
             maxDate={maxDate}
+            yearOffset={yearOffset || 0}
           />
         )}
 
@@ -148,6 +155,8 @@ export const Picker: React.FunctionComponent<PickerProps> = ({
             onChange={handleChangeAndOpenNext}
             minDate={minDate}
             maxDate={maxDate}
+            pickerHeaderFormat={pickerHeaderFormat || 'ddd D MMM'}
+            yearOffset={yearOffset || 0}
           />
         )}
 

@@ -8,7 +8,7 @@ export const getDisplayDate = (
   format: string,
   utils: IUtils<any>,
   isEmpty: boolean,
-  { invalidLabel, emptyLabel, labelFunc }: Omit<BasePickerProps, 'value' | 'onChange'>
+  { invalidLabel, emptyLabel, labelFunc, yearOffset }: Omit<BasePickerProps, 'value' | 'onChange'>
 ) => {
   const date = utils.date(value);
   if (labelFunc) {
@@ -24,7 +24,7 @@ export const getDisplayDate = (
     return invalidLabel!;
   }
   if (/Y{2,4}/i.test(format)) {
-    const modYear = `${utils.getYear(date) + 543}`;
+    const modYear = `${utils.getYear(date) + (yearOffset || 0)}`;
     let modFormat = format.replace(/YYYY/ig, modYear);
     modFormat = modFormat.replace(/YYY/ig, modYear);
     modFormat = modFormat.replace(/YY/ig, modYear.toString().substring(2, 4));
