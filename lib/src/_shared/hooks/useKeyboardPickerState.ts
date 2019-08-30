@@ -37,7 +37,14 @@ export function useKeyboardPickerState(props: BaseKeyboardPickerProps, options: 
 
   const handleKeyboardChange = useCallback(
     (date: MaterialUiPickersDate) => {
-      onChange(date, date === null ? null : utils.format(date, format));
+      let modFormat = format; //TODO: read from props
+      if (/Y{2,4}/i.test(format)) {
+        const modYear = `${utils.getYear(date) + 543}`;
+        modFormat = format.replace(/YYYY/ig, modYear);
+        modFormat = modFormat.replace(/YYY/ig, modYear);
+        modFormat = modFormat.replace(/YY/ig, modYear.toString().substring(2, 4));
+      }
+      onChange(date, date === null ? null : utils.format(date, modFormat));
     },
     [format, onChange, utils]
   );

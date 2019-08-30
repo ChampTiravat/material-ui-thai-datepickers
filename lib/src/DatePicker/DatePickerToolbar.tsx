@@ -48,7 +48,9 @@ export const DatePickerToolbar: React.FC<ToolbarComponentProps> = ({
         variant={isYearOnly ? 'h3' : 'subtitle1'}
         onClick={() => setOpenView('year')}
         selected={openView === 'year'}
-        label={utils.getYearText(date)}
+        // label={utils.getYearText(date)} //TODO: read from prop
+        label={`${utils.getYear(date) + 543}`}
+
       />
 
       {!isYearOnly && !isYearAndMonth && (
@@ -57,7 +59,8 @@ export const DatePickerToolbar: React.FC<ToolbarComponentProps> = ({
           selected={openView === 'date'}
           onClick={() => setOpenView('date')}
           align={isLandscape ? 'left' : 'center'}
-          label={utils.getDatePickerHeaderText(date)}
+          // label={utils.getDatePickerHeaderText(date)} //TODO: read from prop
+          label={utils.format(date, 'ddd D MMM')}
           className={clsx({ [classes.dateLandscape]: isLandscape })}
         />
       )}

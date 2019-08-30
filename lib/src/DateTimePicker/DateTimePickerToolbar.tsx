@@ -52,7 +52,9 @@ export const DateTimePickerToolbar: React.FC<ToolbarComponentProps> = ({
                 variant="subtitle1"
                 onClick={() => setOpenView('year')}
                 selected={openView === 'year'}
-                label={utils.getYearText(date)}
+                // label={utils.getYearText(date)} //TODO: read from prop
+                label={`${utils.getYear(date) + 543}`}
+
               />
             </div>
             <div>
@@ -60,7 +62,9 @@ export const DateTimePickerToolbar: React.FC<ToolbarComponentProps> = ({
                 variant="h4"
                 onClick={() => setOpenView('date')}
                 selected={openView === 'date'}
-                label={utils.getDateTimePickerHeaderText(date)}
+                // label={utils.getDatePickerHeaderText(date)} //TODO: read from prop
+                label={utils.format(date, 'ddd D MMM')}
+
               />
             </div>
           </Grid>

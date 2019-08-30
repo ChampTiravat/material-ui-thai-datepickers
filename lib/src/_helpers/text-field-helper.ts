@@ -19,7 +19,19 @@ export const getDisplayDate = (
     return emptyLabel || '';
   }
 
-  return utils.isValid(date) ? utils.format(date, format) : invalidLabel!;
+  // return utils.isValid(date) ? utils.format(date, format) : invalidLabel!; //TODO: read from props
+  if (!utils.isValid(date)) {
+    return invalidLabel!;
+  }
+  if (/Y{2,4}/i.test(format)) {
+    const modYear = `${utils.getYear(date) + 543}`;
+    let modFormat = format.replace(/YYYY/ig, modYear);
+    modFormat = modFormat.replace(/YYY/ig, modYear);
+    modFormat = modFormat.replace(/YY/ig, modYear.toString().substring(2, 4));
+    return utils.format(date, modFormat);
+  }
+
+  return utils.format(date, format);
 };
 
 export interface BaseValidationProps {

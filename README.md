@@ -2,9 +2,10 @@
   <a href="https://material-ui.com/" rel="noopener" target="_blank"><img width="200" src="https://material-ui-pickers.dev/static/meta-image.png" alt="Material-ui-pickers logo"></a></p>
 </p>
 
-<h1 align="center">Material-UI pickers</h1>
+<h1 align="center">Material-UI Thai datepickers</h1>
 
 <div align="center">
+This package is forked from [material-ui-pickers](https://www.npmjs.com/package/material-ui-pickers)
 
 Accessible, customizable, delightful date & time pickers for [@material-ui/core](https://material-ui.com/)
 

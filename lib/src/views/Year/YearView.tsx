@@ -72,7 +72,8 @@ export const YearSelection: React.FC<YearSelectionProps> = ({
 
         return (
           <Year
-            key={utils.getYearText(year)}
+            // key={utils.getYearText(year)} //TODO: read from prop
+            key={`${utils.getYear(date) + 543}`}
             selected={selected}
             value={yearNumber}
             onSelect={onYearSelect}
@@ -82,7 +83,8 @@ export const YearSelection: React.FC<YearSelectionProps> = ({
                 (disableFuture && utils.isAfterYear(year, utils.date()))
             )}
           >
-            {utils.getYearText(year)}
+            {/* {utils.getYearText(year)} //TODO: read from prop */} 
+            {`${utils.getYear(date) + 543}`}
           </Year>
         );
       })}
