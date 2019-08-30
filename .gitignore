@@ -1,5 +1,5 @@
 # dependencies
-*/node_modules
+node_modules
 
 # build
 dist
@@ -10,18 +10,22 @@ logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+.firebase/
+.env
 
 # coverage
 coverage
 
-# Optional npm cache directory
+# Cache directory
 .npm
+cypress
+.next
 
 # Optional eslint cache
 .eslintcache
 
 # dotenv environment variables file
-.env
+.env.local
 
 # webstorm
 .idea/
@@ -30,5 +34,4 @@ coverage
 
 # editors
 .vs
-.vscode
 .DS_Store

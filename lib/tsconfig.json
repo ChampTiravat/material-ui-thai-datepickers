@@ -1,18 +1,21 @@
 {
   "compilerOptions": {
     "module": "commonjs",
+    "outDir": "build",
+    "declaration": true,
     "target": "es5",
-    "lib": ["es6", "dom"],
-    "sourceMap": true,
+    "lib": ["dom", "es2016"],
+    "skipLibCheck": true,
     "jsx": "react",
     "moduleResolution": "node",
     "noImplicitAny": true,
-    "strictNullChecks": true,
-    "strictFunctionTypes": true,
+    "strict": true,
+    "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
     "suppressImplicitAnyIndexErrors": true,
-    "noEmit": true,
-    "experimentalDecorators": true
+    "resolveJsonModule": true
   },
-  "include": ["src/**/*", "__tests__/**/*.tsx"]
+  "include": ["src/**/*.ts*", "typings.d.ts"],
+  "exclude": ["./src/__tests__/**/*", "build"]
 }
